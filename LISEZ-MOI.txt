@@ -1,0 +1,36 @@
+GOOLS — première version de votre habit tracker mobile
+
+CE QUE CONTIENT CETTE VERSION
+- Interface adaptée au téléphone Android
+- Vos habitudes du fichier GOOLS.xlsx : Pray, Walk, Read, Curan, Sport, Poetry, Trading, Clean, Langues
+- Cases à cocher quotidiennes, progression, série de jours et historique de 7 jours
+- Objectifs hebdomadaires et mensuels modifiables
+- Sauvegarde locale, export/import JSON
+- Base technique pour synchroniser via votre propre Google Sheet
+
+IMPORTANT
+Le dossier est une application web progressive (PWA), pas un APK publié sur le Play Store. Pour l'installer comme une application Android, elle doit être hébergée sur une adresse HTTPS. La synchronisation cloud nécessite les étapes ci-dessous; elle n'est pas activée tant que l'URL n'est pas configurée.
+
+ÉTAPE A — HÉBERGER L'APPLICATION GRATUITEMENT AVEC GITHUB PAGES
+1. Créez/connectez-vous à https://github.com/
+2. Créez un nouveau dépôt public nommé gools-habit-tracker.
+3. Téléversez les fichiers index.html, manifest.json, sw.js et icon.svg à la racine du dépôt. (Code.gs n'est pas nécessaire dans ce dépôt.)
+4. Dans Settings > Pages, choisissez Deploy from a branch, branche main, dossier /(root), puis Save.
+5. Attendez que GitHub affiche l'adresse HTTPS de votre site.
+6. Ouvrez cette adresse sur votre Android avec Chrome > menu ⋮ > Ajouter à l'écran d'accueil / Installer l'application.
+
+ÉTAPE B — ACTIVER LA SYNCHRONISATION AVEC GOOGLE SHEETS
+1. Créez un Google Sheet vide sur https://sheets.google.com/.
+2. Dans ce tableau, ouvrez Extensions > Apps Script.
+3. Remplacez le code dans Code.gs par le contenu du fichier Code.gs inclus ici, puis Enregistrer.
+4. Exécutez la fonction setup une fois et acceptez les autorisations Google demandées.
+5. Cliquez sur Déployer > Nouveau déploiement > Type : Application Web.
+6. Exécuter en tant que : Moi. Accès : Toute personne disposant du lien (ou l'option équivalente disponible dans votre compte). Déployez et copiez l'URL se terminant par /exec.
+7. Dans l'application GOOLS, ouvrez Réglages, collez l'URL puis Enregistrer l'URL et Synchroniser maintenant.
+8. Pour un deuxième appareil, ouvrez la même adresse de l'application et configurez la même URL de script.
+
+CONFIDENTIALITÉ ET LIMITES
+- Cette configuration simple utilise une URL de script comme clé d'accès : ne partagez pas cette URL. Toute personne qui la possède pourrait potentiellement accéder aux données ou les modifier selon les autorisations du déploiement. Ne stockez aucune information sensible.
+- Google Apps Script et les réglages d'accès disponibles peuvent varier selon le compte. Testez d'abord avec des données non importantes.
+- Gardez le fichier GOOLS.xlsx original comme sauvegarde. Cette première version reprend les habitudes quotidiennes visibles dans le fichier; les sections et formules Excel complexes ne sont pas converties automatiquement.
+- L'application fonctionne localement même sans synchronisation; les données locales sont stockées dans le navigateur de l'appareil.
